@@ -1,4 +1,5 @@
 import React from 'react';
+import { ButtonContainer, Button } from '../styles/StyledComponents'; // Import styled components
 
 interface ControlsProps {
   onStartSorting: () => void;
@@ -7,10 +8,10 @@ interface ControlsProps {
 
 const Controls: React.FC<ControlsProps> = ({ onStartSorting, onResetArray }) => {
   return (
-    <div>
-      <button onClick={onResetArray}>Reset Array</button>
-      <button onClick={onStartSorting}>Start Sorting</button>
-    </div>
+    <ButtonContainer>
+      <Button onClick={onResetArray}>Reset Array</Button>
+      <Button onClick={onStartSorting}>Start Sorting</Button>
+    </ButtonContainer>
   );
 };
 

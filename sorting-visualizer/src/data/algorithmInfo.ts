@@ -114,6 +114,200 @@ export const algorithmInfo = {
     setArray([...sortedArray]);
   };
       `,
+    },
+    selectionSort: {
+      name: "Selection Sort",
+      description: "Selection Sort is a comparison-based algorithm. It repeatedly selects the minimum element from the unsorted portion of the list and moves it to the beginning.",
+      complexity: {
+        best: "O(n^2)",
+        average: "O(n^2)",
+        worst: "O(n^2)"
+      },
+      spaceComplexity: "O(1)",
+      code: `
+  export const selectionSort = async (
+    array: number[],
+    setArray: React.Dispatch<React.SetStateAction<number[]>>,
+    speed: number
+  ): Promise<void> => {
+    const arr = [...array];
+    for (let i = 0; i < arr.length - 1; i++) {
+      let minIndex = i;
+      for (let j = i + 1; j < arr.length; j++) {
+        if (arr[j] < arr[minIndex]) {
+          minIndex = j;
+        }
+      }
+      if (minIndex !== i) {
+        [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+        setArray([...arr]);
+        await new Promise((resolve) => setTimeout(resolve, speed));
+      }
     }
+  };
+      `,
+    },
+    insertionSort: {
+      name: "Insertion Sort",
+      description: "Insertion Sort builds the final sorted array one item at a time by repeatedly picking the next item and inserting it into the correct position within the sorted portion.",
+      complexity: {
+        best: "O(n)",
+        average: "O(n^2)",
+        worst: "O(n^2)"
+      },
+      spaceComplexity: "O(1)",
+      code: `
+  export const insertionSort = async (
+    array: number[],
+    setArray: React.Dispatch<React.SetStateAction<number[]>>,
+    speed: number
+  ): Promise<void> => {
+    const arr = [...array];
+    for (let i = 1; i < arr.length; i++) {
+      const key = arr[i];
+      let j = i - 1;
+      while (j >= 0 && arr[j] > key) {
+        arr[j + 1] = arr[j];
+        j--;
+        setArray([...arr]);
+        await new Promise((resolve) => setTimeout(resolve, speed));
+      }
+      arr[j + 1] = key;
+      setArray([...arr]);
+    }
+  };
+      `,
+    },
+    heapSort: {
+      name: "Heap Sort",
+      description: "Heap Sort converts the array into a heap data structure, repeatedly extracts the maximum element, and reconstructs the heap until the array is sorted.",
+      complexity: {
+        best: "O(n log n)",
+        average: "O(n log n)",
+        worst: "O(n log n)"
+      },
+      spaceComplexity: "O(1)",
+      code: `
+  export const heapSort = async (
+    array: number[],
+    setArray: React.Dispatch<React.SetStateAction<number[]>>,
+    speed: number
+  ): Promise<void> => {
+    const arr = [...array];
+    const heapify = async (n: number, i: number) => {
+      let largest = i;
+      const left = 2 * i + 1;
+      const right = 2 * i + 2;
+      if (left < n && arr[left] > arr[largest]) {
+        largest = left;
+      }
+      if (right < n && arr[right] > arr[largest]) {
+        largest = right;
+      }
+      if (largest !== i) {
+        [arr[i], arr[largest]] = [arr[largest], arr[i]];
+        setArray([...arr]);
+        await new Promise((resolve) => setTimeout(resolve, speed));
+        await heapify(n, largest);
+      }
+    };
+    const sort = async () => {
+      const n = arr.length;
+      for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
+        await heapify(n, i);
+      }
+      for (let i = n - 1; i >= 0; i--) {
+        [arr[0], arr[i]] = [arr[i], arr[0]];
+        setArray([...arr]);
+        await new Promise((resolve) => setTimeout(resolve, speed));
+        await heapify(i, 0);
+      }
+    };
+    await sort();
+  };
+      `,
+    },
+    countingSort: {
+      name: "Counting Sort",
+      description: "Counting Sort is a non-comparison-based algorithm that counts the occurrences of each value in the array and then places each value in its correct position.",
+      complexity: {
+        best: "O(n + k)",
+        average: "O(n + k)",
+        worst: "O(n + k)"
+      },
+      spaceComplexity: "O(n + k)",
+      code: `
+  export const countingSort = async (
+    array: number[],
+    setArray: React.Dispatch<React.SetStateAction<number[]>>,
+    speed: number
+  ): Promise<void> => {
+    const arr = [...array];
+    const max = Math.max(...arr);
+    const count = new Array(max + 1).fill(0);
+    for (const num of arr) {
+      count[num]++;
+    }
+    let index = 0;
+    for (let i = 0; i < count.length; i++) {
+      while (count[i] > 0) {
+        arr[index++] = i;
+        count[i]--;
+        setArray([...arr]);
+        await new Promise((resolve) => setTimeout(resolve, speed));
+      }
+    }
+  };
+      `,
+    },
+    radixSort: {
+      name: "Radix Sort",
+      description: "Radix Sort processes the digits of numbers, sorting them by each digit’s significance, starting from the least significant digit to the most significant digit.",
+      complexity: {
+        best: "O(nk)",
+        average: "O(nk)",
+        worst: "O(nk)"
+      },
+      spaceComplexity: "O(n + k)",
+      code: `
+  export const radixSort = async (
+    array: number[],
+    setArray: React.Dispatch<React.SetStateAction<number[]>>,
+    speed: number
+  ): Promise<void> => {
+    const arr = [...array];
+    const max = Math.max(...arr);
+    let exp = 1;
+    const radixSortHelper = async (exp: number) => {
+      const output = new Array(arr.length).fill(0);
+      const count = new Array(10).fill(0);
+  
+      for (const num of arr) {
+        count[Math.floor(num / exp) % 10]++;
+      }
+  
+      for (let i = 1; i < 10; i++) {
+        count[i] += count[i - 1];
+      }
+  
+      for (let i = arr.length - 1; i >= 0; i--) {
+        output[count[Math.floor(arr[i] / exp) % 10] - 1] = arr[i];
+        count[Math.floor(arr[i] / exp) % 10]--;
+      }
+  
+      for (let i = 0; i < arr.length; i++) {
+        arr[i] = output[i];
+        setArray([...arr]);
+        await new Promise((resolve) => setTimeout(resolve, speed));
+      }
+    };
+  
+    while (Math.floor(max / exp) > 0) {
+      await radixSortHelper(exp);
+      exp *= 10;
+    }
+  };
+      `,
+    },
   };
   

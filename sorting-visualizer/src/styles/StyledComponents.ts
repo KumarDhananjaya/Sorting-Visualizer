@@ -1,6 +1,42 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
+// Animated Background
+export const AnimatedBackground = styled(motion.div)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #3498db, #2ecc71);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  z-index: -1;
+  filter: blur(8px);
+  
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+`;
+
+export const Container = styled.div`
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`;
+
 export const ArrayContainer = styled.div`
   display: flex;
   align-items: flex-end;
