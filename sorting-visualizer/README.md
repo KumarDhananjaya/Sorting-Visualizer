@@ -1,3 +1,52 @@
+# Sorting-Visualizer
+A dynamic and interactive sorting visualizer built with React, TypeScript, and styled-components. This project allows users to visualize various sorting algorithms through a captivating and educational interface.
+
+## Features
+
+- **Algorithm Visualization:** View real-time visualizations of popular sorting algorithms as they process data.
+- **Interactive Controls:** Start, pause, and reset sorting processes with intuitive controls.
+- **Speed Adjustment:** Adjust the speed of sorting to observe different algorithms in detail.
+- **Algorithm Information:** Get detailed explanations, time and space complexities, and code implementations for each sorting algorithm.
+- **Beautiful UI:** Experience an engaging user interface with smooth animations and a dark-themed background for better focus.
+
+## Supported Sorting Algorithms
+
+- **Bubble Sort**
+- **Selection Sort**
+- **Insertion Sort**
+- **Merge Sort**
+- **Quick Sort**
+- **Heap Sort**
+- **Counting Sort**
+- **Radix Sort**
+
+## Getting Started
+
+To get a local copy of the project up and running follow these simple steps:
+
+1. **Clone the Repository:**
+
+   ```bash
+   git clone https://github.com/yourusername/sorting-visualizer.git
+   ```
+2. **Install Dependencies:**
+   
+   Navigate to the project directory and install the necessary dependencies:
+   ```bash
+   cd sorting-visualizer
+   npm install
+   ```
+3. **Start the Development Server:**
+   
+    Run the following command to start the development server:
+   ```bash
+    npm run dev
+   ```
+4. **Open in Your Browser:**
+   Navigate to http://localhost:5173 to view the visualizer.
+   
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
