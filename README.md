@@ -1,6 +1,19 @@
 # Sorting-Visualizer
 A dynamic and interactive sorting visualizer built with React, TypeScript, and styled-components. This project allows users to visualize various sorting algorithms through a captivating and educational interface.
 
+## View the Deployed App
+
+You can view the deployed app by scanning the QR code below:
+
+Alternatively, you can click [here]([https://your-deployed-app-url.com](https://bit.ly/3XpZJJv)) to open the app directly.
+
+QR Code to view Deployed site
+
+
+![bit ly_3XpZJJv](https://github.com/user-attachments/assets/80ce9732-77aa-4c08-92fb-c5246de5b351)
+
+
+
 ## Features
 
 - **Algorithm Visualization:** View real-time visualizations of popular sorting algorithms as they process data.
